@@ -1,0 +1,41 @@
+CONFIG_NAME:
+  MVIT_PRETRAINED_RESAMPLED
+DATA:
+  DATASET_NAME: surgvu24
+  DATA_PATH: /datasets/surgvu24/processed/
+  NUM_CLASSES: 8
+  SEQUENCE_LENGTH: 32
+  SEQUENCE_STRIDE: 1
+  USE_WEIGHTED_SAMPLER: True
+  CLASS_FREQS:
+    [
+      0.006464,
+      0.044724,
+      0.007025,
+      0.017800,
+      0.028829,
+      0.089727,
+      0.052081,
+      0.753350,
+    ]
+  PREPROCESSING_PARAMS:
+    random_resized_crop_paras:
+      scale: 
+        [0.08, 1.0]
+      aspect_ratio: 
+        [0.75, 1.33]
+    aug_paras:
+      magnitude: 10
+      num_layers: 2
+      prob: 0.5
+MODEL:
+  MODEL_NAME: mvit_base_32x3
+  PRETRAINED: True
+TRAIN:
+  BATCH_SIZE: 5
+  EPOCHS: 25
+  OPTIMIZER: adam
+  BASE_LR: 1.0E-4
+  WEIGHT_DECAY: 1.0E-8
+  NUM_WORKERS: 8
+  MONITORED_METRIC: val_f1
